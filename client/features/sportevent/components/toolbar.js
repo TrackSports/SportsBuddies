@@ -29,8 +29,8 @@ export class Toolbar extends Component {
                   <input type="text" className="form-control" placeholder="Search" />
                 </div>
               </form>
-              <ul className="nav navbar-nav navbar-right">
-                <li onClick={() => this.showEventList() }>event list</li>
+              <ul className="nav navbar-nav">
+                <li><a onClick={() => this.showEventList() }>event list</a></li>
               </ul>
             </div>
           </div>
