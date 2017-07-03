@@ -33,5 +33,20 @@ namespace TrackSports_API.Business
             }
             return events;
         }
+
+        public List<Event> GetEventsByUserId(string userId)
+        {
+            return new List<Event>();
+        }
+
+        public bool SaveNewEvent(Event newEvent)
+        {
+            return true;
+        }
+
+        public bool JoinUserToEvent(string userId, int eventId)
+        {
+            return true;
+        }
     }
 }
