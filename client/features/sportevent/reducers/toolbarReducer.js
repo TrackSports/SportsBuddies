@@ -6,6 +6,7 @@ const InitialState = {
   isShowNewEventModal: false,
   eventList: [
     {
+      id: '1',
       name: 'football',
       location: 'domain',
       category: 'football',
@@ -15,6 +16,7 @@ const InitialState = {
       isJoined: false
     },
     {
+      id: '2',
       name: 'basketball',
       location: 'domain',
       category: 'basketball',
@@ -24,6 +26,7 @@ const InitialState = {
       isJoined: false
     },
     {
+      id: '3',
       name: 'netball',
       location: 'domain',
       category: 'netball',
@@ -56,7 +59,13 @@ export default createReducer(InitialState, Object.assign(
     },
     [ActionTypes.HIDE_NEW_EVENT_MODAL]: (state) => {
       return { ...state, isShowNewEventModal: false };
+    },
+    [ActionTypes.JOIN_EVENT]: (state, action) => {
+      const eventId = action.payload.eventId;
+      const newEventlist = state.eventList.map((event) => {
+        return event.id === eventId ? { ...event, isJoined: true } : event;
+      });
+      return { ...state, eventList: newEventlist };
     }
-
 
   }));

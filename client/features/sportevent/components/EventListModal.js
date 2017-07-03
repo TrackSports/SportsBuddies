@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import Modal from 'app/components/UI/Modal';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { closeEventList } from 'features/sportevent/actions/toolbarAction';
+import { closeEventList, joinEvent } from 'features/sportevent/actions/toolbarAction';
 
 class EventListModal extends Component {
 
@@ -11,10 +11,17 @@ class EventListModal extends Component {
     this.props.closeEventList();
   }
 
-  renderJoinButton(isJoined) {
+  joinEvent(eventId) {
+    const payload = {
+      eventId
+    };
+    this.props.joinEvent(payload);
+  }
+
+  renderJoinButton(isJoined, eventId) {
     if (!isJoined) {
       return (
-        <button className="btn btn-success">Join</button>
+        <button className="btn btn-success" onClick={() => this.joinEvent(eventId)}>Join</button>
       );
     }
   }
@@ -44,7 +51,7 @@ class EventListModal extends Component {
               <td>{d.weekday}</td>
               <td>{d.startTime}</td>
               <td>{d.duration}</td>
-              <td>{this.renderJoinButton(d.isJoined)}</td>
+              <td>{this.renderJoinButton(d.isJoined, d.id)}</td>
             </tr>
           );})}
           </tbody>
@@ -72,7 +79,8 @@ class EventListModal extends Component {
 EventListModal.propTypes = {
   isShowEventListModal: PropTypes.bool,
   eventList: PropTypes.array,
-  closeEventList: PropTypes.func
+  closeEventList: PropTypes.func,
+  joinEvent: PropTypes.func
 };
 
 function mapStateToProps(state) {
@@ -83,7 +91,7 @@ function mapStateToProps(state) {
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({ closeEventList }, dispatch);
+  return bindActionCreators({ closeEventList, joinEvent }, dispatch);
 }
 
 export default connect(mapStateToProps, matchDispatchToProps)(EventListModal);

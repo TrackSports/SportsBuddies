@@ -16,8 +16,8 @@ class NewEventModal extends Component {
   }
 
   componentDidMount() {
-    $('#startTime').datetimepicker();
-    $('#startTime').datetimepicker();
+  //   $('#startTime').datetimepicker();
+  //   $('#startTime').datetimepicker();
   }
 
   handleCategoryChange(event) {
