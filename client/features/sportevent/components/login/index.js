@@ -18,7 +18,7 @@ export default class Login extends Component {
     }
 
   handleLogin() {
-    $.post("http://localhost:57851/api/login/values/gaurav.kohirkar/darthvader123$",null,
+    $.post("http://localhost:57851/api/login/values/",null,
     function(data, status){
         window.location = '/hackit/sport/123';
     });

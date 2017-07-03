@@ -36,6 +36,13 @@ namespace TrackSports_API.Controllers
             return events;
         }
 
+        [HttpGet("eventsbyuser/{userid}")]
+        public List<Event> GetEventsByUserId(string userid)
+        {
+            List<Event> events = _eventsRepo.GetEventsByUserId(userid);
+            return events;
+        }
+
         [HttpPost("login/{username}/{password}")]
         [AllowAnonymous]
         public IActionResult Login(string username, string password)
