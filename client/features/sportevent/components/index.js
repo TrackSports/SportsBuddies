@@ -25,10 +25,18 @@ export default class SportEvent extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container-fluid">
+        <div className="row">
           <Toolbar />
-          <EventDetail />
-          <YourEvent />
+        </div>
+        <div className="row">
+          <div className="col-xs-4">
+            <EventDetail />
+          </div>
+          <div className="col-xs-8">
+            <YourEvent />
+          </div>
+        </div>
       </div>
     );
   }

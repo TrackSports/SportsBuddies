@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import classnames from 'classnames';
+// import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getEventList } from 'features/sportevent/actions/toolbarAction';
@@ -18,13 +18,21 @@ export class Toolbar extends Component {
   render() {
     return (
      <div>
-        <nav className={classnames('navbar navbar-static-top')}>
-           <div className={classnames('collapse navbar-collapse')}>
-            <ul>
-              <li>search</li>
-              <li onClick={() => this.showEventList() }>event list</li>
-              <li>create your own</li>
-            </ul>
+        <nav className="navbar navbar-default">
+          <div className="container-fluid">
+            <div className="navbar-header">
+              <a className="navbar-brand" href="#">Sport</a>
+            </div>
+            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <form className="navbar-form navbar-left">
+                <div className="form-group">
+                  <input type="text" className="form-control" placeholder="Search" />
+                </div>
+              </form>
+              <ul className="nav navbar-nav navbar-right">
+                <li onClick={() => this.showEventList() }>event list</li>
+              </ul>
+            </div>
           </div>
         </nav>
 
