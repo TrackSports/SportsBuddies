@@ -1,9 +1,9 @@
 {
-  "name": "flexit",
+  "name": "sport",
   "version": "0.0.1",
-  "description": "InfoTrack Flexible Document Builder",
+  "description": "infotrack sport builder",
   "main": "index.js",
-  "author": "rui.cheng@infotrack.com.au",
+  "author": "no.name@infotrack.com.au",
   "scripts": {
     "start": "webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors --port 3000",
     "build": "rimraf ./server/InfoTrack.Flexit.Web/wwwroot/dist && set NODE_ENV=production & webpack --progress --colors --config config/webpack.prod.js"

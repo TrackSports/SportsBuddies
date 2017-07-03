@@ -1,7 +1,7 @@
 # Welcome to FlexIT
 
 ## Get Started
-- `git clone https://github.com/InfoTrackGlobal/flexit.git`
+- `git clone https://github.com/TrackSports/SportsBuddies.git`
 
 ### Run Client
 - `cd flexit`
@@ -9,7 +9,4 @@
 - `npm start`
 - Opne http://localhost:3000
 
-### Run Server
-- Open `server/Flexit.sln`
-- Wait for VS to restore nuget packages
-- Run in `Development` mode
+
