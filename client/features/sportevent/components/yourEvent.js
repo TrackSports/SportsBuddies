@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getEventList } from 'features/sportevent/actions/toolbarAction';
 
-export class Toolbar extends Component {
+export class YourEvent extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
@@ -40,7 +40,7 @@ export class Toolbar extends Component {
   }
 }
 
-Toolbar.propTypes = {
+YourEvent.propTypes = {
   getEventList: PropTypes.func
 };
 
@@ -48,4 +48,4 @@ function matchDispatchToProps(dispatch) {
   return bindActionCreators({ getEventList }, dispatch);
 }
 
-export default connect(null, matchDispatchToProps)(Toolbar);
+export default connect(null, matchDispatchToProps)(YourEvent);
