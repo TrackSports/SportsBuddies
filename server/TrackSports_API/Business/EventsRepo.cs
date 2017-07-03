@@ -65,7 +65,6 @@ namespace TrackSports_API.Business
 
         public bool SaveNewEvent(Event newEvent)
         {
-            List<Event> events = new List<Event>();
             using (SqlConnection con = new SqlConnection(_conString))
             {
                 string sql = string.Format("insert [Events] ([Name], [Location], [Category], [EventDay], [DateTimeStart], [Duration]) Values ('{0}', '{1}', '{2}', '{3}', {4}, {5} )",
@@ -81,19 +80,68 @@ namespace TrackSports_API.Business
 
         public bool UserExists(string userId)
         {
+            bool exists = false;
+            using (SqlConnection con = new SqlConnection(_conString))
+            {
+                string sql = "select 1 from [Users] where userId='" + userId + "'";
+                con.Open();
+                SqlCommand cmd = new SqlCommand(sql, con);
+                SqlDataReader dr = cmd.ExecuteReader();
+                exists = dr.Read();
+                con.Close();
+            }
+            return exists;
+        }
+
+        public bool SaveUser(string newUserId, string nickName)
+        {
+            if (!UserExists(newUserId))
+            {
+                using (SqlConnection con = new SqlConnection(_conString))
+                {
+                    string sql = string.Format("insert [Users] ([UserId], [NickName]) Values ('{0}', '{1}')", newUserId, nickName);
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(sql, con);
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+                return true;
+            }
             return false;
         }
 
-        public bool SaveUser(string newUserId)
+        public bool IsUserJoinedEvent(string userId, int eventId)
         {
-
-            return true;
+            bool joined = false;
+            using (SqlConnection con = new SqlConnection(_conString))
+            {
+                string sql = "select 1 from [UsersEvents] where userId='" + userId + "' and EventId=" + eventId;
+                con.Open();
+                SqlCommand cmd = new SqlCommand(sql, con);
+                SqlDataReader dr = cmd.ExecuteReader();
+                joined = dr.Read();
+                con.Close();
+            }
+            return joined;
         }
 
         public bool JoinUserToEvent(string userId, int eventId)
         {
-
-            return true;
+            if (UserExists(userId) &&  !IsUserJoinedEvent(userId, eventId))
+            {
+                using (SqlConnection con = new SqlConnection(_conString))
+                {
+                    string sql = string.Format("insert [UsersEvents] ([UserId], [EventId]) Values ('{0}', {1})", userId, eventId);
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(sql, con);
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+                return true;
+            }
+            return false;
         }
     }
 }
