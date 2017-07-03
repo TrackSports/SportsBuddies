@@ -1,7 +1,7 @@
 
-import nsw from 'features/nsw';
+import sport from 'features/sportevent';
 
-const sagas = [...nsw.sagas];
+const sagas = [...sport.sagas];
 
 export default function* root() {
   yield sagas;
