@@ -11,22 +11,44 @@ class EventListModal extends Component {
     this.props.closeEventList();
   }
 
+  renderJoinButton(isJoined) {
+    if (!isJoined) {
+      return (
+        <button className="btn btn-success">Join</button>
+      );
+    }
+  }
+
   renderEvents() {
     const { eventList } = this.props;
     return (
-       <div>
-           {eventList.map(d => {
-             return (
-              <div className = "row" key={d.name}>
-                <div className = "col-xs-2">{d.name}</div>
-                <div className = "col-xs-2">{d.location}</div>
-                <div className = "col-xs-2">{d.category}</div>
-                <div className = "col-xs-2">{d.startTime}</div>
-                <div className = "col-xs-2">{d.duration}</div>
-                <div className = "col-xs-2">{d.isJoined}</div>
-              </div>
-            );})}
-        </div>
+       <table className="table table-hover">
+         <thead>
+      <tr>
+        <th>title</th>
+        <th>location</th>
+        <th>category</th>
+        <th>day</th>
+        <th>start</th>
+        <th>duration</th>
+        <th>join</th>
+      </tr>
+    </thead>
+      <tbody>
+        {eventList.map(d => {
+          return (
+            <tr key={d.name}>
+              <td>{d.name}</td>
+              <td>{d.location}</td>
+              <td>{d.category}</td>
+              <td>{d.weekday}</td>
+              <td>{d.startTime}</td>
+              <td>{d.duration}</td>
+              <td>{this.renderJoinButton(d.isJoined)}</td>
+            </tr>
+          );})}
+          </tbody>
+        </table>
      );
   }
 

@@ -10,8 +10,8 @@ export class YourEvent extends Component {
     e.preventDefault();
   }
 
-  showTheEvent(EventId) {
-    alert(EventId);
+  showTheEvent() {
+    // alert(EventId);
     // this.props.getEventList();
   }
 
