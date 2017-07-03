@@ -34,9 +34,10 @@ class NewEventModal extends Component {
 
   handleSave() {
     const payload = {
+      id: '12312312',
       name: this.nameInput.value,
       catgegory: this.state.category,
-      weekDay: this.stage.weekDay,
+      weekDay: this.state.weekDay,
       location: this.nameInput.value,
       startTime: this.startTimeInput.value,
       duration: this.durationInput.value,
