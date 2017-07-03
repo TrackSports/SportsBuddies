@@ -15,7 +15,7 @@ namespace TrackSports_API.Controllers
 
 
     [Produces("application/json")]
-    [Route("api/login/[controller]")]
+    [Route("api/[controller]")]
     public class ValuesController : Controller
     {
         private readonly LdapConfig _ldapconfig;
@@ -37,7 +37,7 @@ namespace TrackSports_API.Controllers
             return "value";
         }
 
-        [HttpPost("{username}/{password}")]
+        [HttpPost("/login/{username}/{password}")]
         [AllowAnonymous]
         public IActionResult Login(string username, string password)
         {
