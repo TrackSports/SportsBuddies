@@ -2,20 +2,23 @@ import React, { Component, PropTypes } from 'react';
 // import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getEventList } from 'features/sportevent/actions/toolbarAction';
+import { showEventDetail } from 'features/sportevent/actions/eventDetailAction';
 
-export class YourEvent extends Component {
+class YourEvent extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
   }
 
-  showTheEvent() {
-    // alert(EventId);
-    // this.props.getEventList();
+  showTheEvent(eventId) {
+    const payload = {
+      eventId
+    };
+    this.props.showEventDetail(payload);
   }
 
   render() {
+    const { eventList } = this.props;
     return (
       <div>
           <div>Your Events</div>
@@ -26,26 +29,32 @@ export class YourEvent extends Component {
               </div>
             </form>
           </div>
-
+            <br />
           <div>
-            <ul>
-                <li><a onClick={() => this.showTheEvent('1') }>Sat Football</a></li>
-                <li><a onClick={() => this.showTheEvent('2') }>Sun Netball</a></li>
-                <li><a onClick={() => this.showTheEvent('3') }>Wed Yoga</a></li>
-                <li><a onClick={() => this.showTheEvent('4') }>Thur Weights</a></li>
-            </ul>
+              <ul className="nav nav-pills nav-stacked">
+                {eventList.map(d => {
+                  return (
+                    <li key={d.id} role="presentation"><a onClick={() => { this.showTheEvent(d.id); }}> {d.weekday} {d.name}</a></li>
+                  );})}
+              </ul>
+            </div>
           </div>
-      </div>
     );
   }
 }
 
 YourEvent.propTypes = {
-  getEventList: PropTypes.func
+  showEventDetail: PropTypes.func,
+  eventList: PropTypes.array
 };
 
+function mapStateToProps(state) {
+  return {
+    eventList: state.sportEventDetail.eventList
+  };
+}
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({ getEventList }, dispatch);
+  return bindActionCreators({ showEventDetail }, dispatch);
 }
 
-export default connect(null, matchDispatchToProps)(YourEvent);
+export default connect(mapStateToProps, matchDispatchToProps)(YourEvent);

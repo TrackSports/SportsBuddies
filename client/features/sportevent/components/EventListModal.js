@@ -31,30 +31,30 @@ class EventListModal extends Component {
     return (
        <table className="table table-hover">
          <thead>
-      <tr>
-        <th>title</th>
-        <th>location</th>
-        <th>category</th>
-        <th>day</th>
-        <th>start</th>
-        <th>duration</th>
-        <th>join</th>
-      </tr>
-    </thead>
-      <tbody>
-        {eventList.map(d => {
-          return (
-            <tr key={d.name}>
-              <td>{d.name}</td>
-              <td>{d.location}</td>
-              <td>{d.category}</td>
-              <td>{d.weekday}</td>
-              <td>{d.startTime}</td>
-              <td>{d.duration}</td>
-              <td>{this.renderJoinButton(d.isJoined, d.id)}</td>
+            <tr>
+              <th>title</th>
+              <th>location</th>
+              <th>category</th>
+              <th>day</th>
+              <th>start</th>
+              <th>duration</th>
+              <th>join</th>
             </tr>
-          );})}
-          </tbody>
+        </thead>
+        <tbody>
+          {eventList.map(d => {
+            return (
+              <tr key={d.name}>
+                <td>{d.name}</td>
+                <td>{d.location}</td>
+                <td>{d.category}</td>
+                <td>{d.weekday}</td>
+                <td>{d.startTime}</td>
+                <td>{d.duration}</td>
+                <td>{this.renderJoinButton(d.isJoined, d.id)}</td>
+              </tr>
+            );})}
+            </tbody>
         </table>
      );
   }
