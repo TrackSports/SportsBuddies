@@ -19,8 +19,10 @@ class EventListModal extends Component {
              return (
               <div className = "row" key={d.name}>
                 <div className = "col-xs-2">{d.name}</div>
-                <div className = "col-xs-4">{d.location}</div>
-                <div className = "col-xs-2">{d.time}</div>
+                <div className = "col-xs-2">{d.location}</div>
+                <div className = "col-xs-2">{d.category}</div>
+                <div className = "col-xs-2">{d.startTime}</div>
+                <div className = "col-xs-2">{d.duration}</div>
                 <div className = "col-xs-2">{d.isJoined}</div>
               </div>
             );})}

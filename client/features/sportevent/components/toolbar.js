@@ -2,8 +2,9 @@ import React, { Component, PropTypes } from 'react';
 // import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getEventList } from 'features/sportevent/actions/toolbarAction';
+import { getEventList, createEvent } from 'features/sportevent/actions/toolbarAction';
 import EventListModal from './EventListModal';
+import NewEventModal from './NewEventModal';
 
 export class Toolbar extends Component {
 
@@ -13,6 +14,10 @@ export class Toolbar extends Component {
 
   showEventList() {
     this.props.getEventList();
+  }
+
+  createEvent() {
+    this.props.createEvent();
   }
 
   render() {
@@ -31,19 +36,22 @@ export class Toolbar extends Component {
               </form>
               <ul className="nav navbar-nav">
                 <li><a onClick={() => this.showEventList() }>event list</a></li>
+                <li><a onClick={() => this.createEvent() }>create your own</a></li>
               </ul>
             </div>
           </div>
         </nav>
 
         <EventListModal />
+        <NewEventModal />
       </div>
     );
   }
 }
 
 Toolbar.propTypes = {
-  getEventList: PropTypes.func
+  getEventList: PropTypes.func,
+  createEvent: PropTypes.func
 };
 
 // function mapStateToProps(state) {
@@ -53,7 +61,7 @@ Toolbar.propTypes = {
 // }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({ getEventList }, dispatch);
+  return bindActionCreators({ getEventList, createEvent }, dispatch);
 }
 
 export default connect(null, matchDispatchToProps)(Toolbar);
