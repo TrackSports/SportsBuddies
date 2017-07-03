@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TrackSports.Authentication;
+using TrackSports_API.Business;
 using TrackSports_API.TracksportModels;
 
 namespace TrackSports_API.Controllers
@@ -14,6 +15,11 @@ namespace TrackSports_API.Controllers
     [Route("api/TrackSports")]
     public class TrackSportsController : Controller
     {
+        private EventsRepo _eventsRepo;
+        public TrackSportsController(EventsRepo eventsRepo)
+        {
+            _eventsRepo = eventsRepo;
+        }
 
         [HttpPost()]
         [AllowAnonymous]
@@ -21,10 +27,11 @@ namespace TrackSports_API.Controllers
         {
             try
             {
-                List<Event> events=new List<Event>();
-                events.Add(new Event(){Id = 1, Name = "Footballl", Category = "Football", EventDay = "Monday", Location = "The Park", TimeStart = "12:00", Duration = 45});
-                events.Add(new Event() { Id = 2, Name = "num 2", Category = "Netball", EventDay = "Tuesday", Location = "123 gim st. CBD", TimeStart = "12:45", Duration = 90 });
-                events.Add(new Event() { Id = 3, Name = "Rugby", Category = "AFL", EventDay = "Saturday", Location = "The Other Park", TimeStart = "19:00", Duration = 120 });
+
+                List<Event> events = _eventsRepo.GetEvents();
+                //events.Add(new Event(){Id = 1, Name = "Footballl", Category = "Football", EventDay = "Monday", Location = "The Park", TimeStart = "12:00", Duration = 45});
+                //events.Add(new Event() { Id = 2, Name = "num 2", Category = "Netball", EventDay = "Tuesday", Location = "123 gim st. CBD", TimeStart = "12:45", Duration = 90 });
+                //events.Add(new Event() { Id = 3, Name = "Rugby", Category = "AFL", EventDay = "Saturday", Location = "The Other Park", TimeStart = "19:00", Duration = 120 });
                 return Ok(events);
             }
             catch (Exception ex)
