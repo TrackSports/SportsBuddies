@@ -12,7 +12,7 @@ namespace TrackSports_API.Business
         public List<Event> GetEvents()
         {
             List < Event > events=new List<Event>();
-            using (SqlConnection con = new SqlConnection("........"))
+            using (SqlConnection con = new SqlConnection("data source=ldmcoredev.infotrack.com.au;initial catalog=TrackSports;user id=LDMS;password=LDMS;"))
             {
                 string sql = "select * from [Events]";
                 con.Open();
@@ -25,7 +25,7 @@ namespace TrackSports_API.Business
                     ev.Location=dr["Location"].ToString();
                     ev.Category=dr["Category"].ToString();
                     ev.EventDay=dr["EventDay"].ToString();
-                    ev.TimeStart=dr["DateTimeStart"].ToString();
+                    ev.DateTimeStart = dr["DateTimeStart"].ToString();
                     ev.Duration=Convert.ToInt32(dr["Duration"]);
                     events.Add(ev);
                 }

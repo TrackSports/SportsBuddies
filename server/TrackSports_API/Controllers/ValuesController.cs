@@ -9,32 +9,31 @@ using TrackSports.Authentication.Interfaces;
 using TrackSports.Authentication;
 using TrackSports.Authentication.Models;
 using Microsoft.Extensions.Options;
+using TrackSports_API.Business;
+using TrackSports_API.TracksportModels;
 
 namespace TrackSports_API.Controllers
 {
-
 
     [Produces("application/json")]
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        private const string CONNECTION_STRING = "";
         private readonly LdapConfig _ldapconfig;
+        private EventsRepo _eventsRepo;
         public ValuesController(IOptions<LdapConfig> ldapConfig )
         {
             _ldapconfig = ldapConfig.Value;
-        }
-        // GET api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
+            _eventsRepo = new EventsRepo();
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("allevents")]
+        public List<Event> GetAllEvents()
         {
-            return "value";
+            List<Event> events = _eventsRepo.GetEvents();
+            return events;
         }
 
         [HttpPost("login/{username}/{password}")]

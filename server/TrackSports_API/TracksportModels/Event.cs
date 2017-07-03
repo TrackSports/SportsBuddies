@@ -12,7 +12,7 @@ namespace TrackSports_API.TracksportModels
         public string Category { get; set; }
         public string Location { get; set; }
         public string EventDay { get; set; }
-        public string TimeStart { get; set; }
+        public string DateTimeStart { get; set; }
         public int Duration { get; set; }
 
     }
