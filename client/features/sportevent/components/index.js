@@ -31,10 +31,10 @@ export default class SportEvent extends Component {
         </div>
         <div className="row">
           <div className="col-xs-4">
-            <EventDetail />
+            <YourEvent />
           </div>
           <div className="col-xs-8">
-            <YourEvent />
+            <EventDetail />
           </div>
         </div>
       </div>
