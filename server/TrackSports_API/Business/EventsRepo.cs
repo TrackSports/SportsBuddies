@@ -42,7 +42,7 @@ namespace TrackSports_API.Business
             {
                 string sql = "select * FROM [Events], UsersEvents " +
                              "where UsersEvents.EventId = [Events].EventId " +
-                             "and UsersEvents.UserId = ";
+                             "and UsersEvents.UserId = " + userId;
                 con.Open();
                 SqlCommand cmd = new SqlCommand(sql, con);
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -65,6 +65,7 @@ namespace TrackSports_API.Business
 
         public bool SaveNewEvent(Event newEvent)
         {
+ 
             return true;
         }
 
