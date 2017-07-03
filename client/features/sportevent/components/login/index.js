@@ -9,15 +9,21 @@ const divStyle = {
   marginTop: '10px'
 };
 export default class Login extends Component {
-//   componentDidMount() {
-//   }
-
-//   componentWillReceiveProps(nextProps) {
-//   }
+  constructor() {
+      super();
+      this.state = {
+          username: '',
+          password: ''
+      };
+    }
 
   handleLogin() {
-    window.location = '/hackit/sport/123';
-  }
+    $.post("http://localhost:57851/api/login/values/gaurav.kohirkar/darthvader123$",null,
+    function(data, status){
+        window.location = '/hackit/sport/123';
+    });
+}
+
   handleSubmit(e) {
     e.preventDefault();
   }
