@@ -65,12 +65,34 @@ namespace TrackSports_API.Business
 
         public bool SaveNewEvent(Event newEvent)
         {
- 
+            List<Event> events = new List<Event>();
+            using (SqlConnection con = new SqlConnection(_conString))
+            {
+                string sql = string.Format("insert [Events] ([Name], [Location], [Category], [EventDay], [DateTimeStart], [Duration]) Values ('{0}', '{1}', '{2}', '{3}', {4}, {5} )",
+                                                    newEvent.Name, newEvent.Location, newEvent.Category, newEvent.EventDay, newEvent.DateTimeStart, newEvent.Duration);
+                con.Open();
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            return true;
+        }
+
+        public bool UserExists(string userId)
+        {
+            return false;
+        }
+
+        public bool SaveUser(string newUserId)
+        {
+
             return true;
         }
 
         public bool JoinUserToEvent(string userId, int eventId)
         {
+
             return true;
         }
     }
