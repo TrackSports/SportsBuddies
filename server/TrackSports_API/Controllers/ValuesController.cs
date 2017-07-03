@@ -22,7 +22,7 @@ namespace TrackSports_API.Controllers
         private const string CONNECTION_STRING = "";
         private readonly LdapConfig _ldapconfig;
         private EventsRepo _eventsRepo;
-        public ValuesController(IOptions<LdapConfig> ldapConfig )
+        public ValuesController(IOptions<LdapConfig> ldapConfig)
         {
             _ldapconfig = ldapConfig.Value;
             _eventsRepo = new EventsRepo();
@@ -36,7 +36,16 @@ namespace TrackSports_API.Controllers
             return events;
         }
 
-        [HttpGet("eventsbyuser/{userid}")]
+        [HttpPost("newEvent/{newEvent}/{username}")]
+        public List<Event> SaveEvent(Event newEvent, string username)
+        {
+            if (_eventsRepo.SaveNewEvent(newEvent))
+                return _eventsRepo.GetEventsByUserId(username);
+            else
+                return null;
+        }
+
+        [HttpPost("geteventsbyuser/{userid}")]
         public List<Event> GetEventsByUserId(string userid)
         {
             List<Event> events = _eventsRepo.GetEventsByUserId(userid);
