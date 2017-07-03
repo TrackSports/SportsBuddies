@@ -12,23 +12,23 @@ export default createReducer(InitialState, Object.assign(
   {
     [ActionTypes.GET_EVENT_LIST]: (state) => {
       const newEventList = [
-        event: {
-            name: 'football',
-            location: 'domain',
-            time: '12/07/2017',
-            isJoined: false
+        {
+          name: 'football',
+          location: 'domain',
+          time: '12/07/2017',
+          isJoined: false
         },
-        event: {
-            name: 'basketball',
-            location: 'domain',
-            time: '12/08/2017',
-            isJoined: false
+        {
+          name: 'basketball',
+          location: 'domain',
+          time: '12/08/2017',
+          isJoined: false
         },
-        event: {
-            name: 'netball',
-            location: 'domain',
-            time: '12/07/2017',
-            isJoined: true
+        {
+          name: 'netball',
+          location: 'domain',
+          time: '12/07/2017',
+          isJoined: true
         }
       ];
       return { ...state, isShowEventListModal: true, eventList: newEventList };
