@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import Modal from 'app/components/UI/Modal';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { closeEventList } from 'features/sportevent/actions/toolbarAction';
+import { closeEventList, joinEvent } from 'features/sportevent/actions/toolbarAction';
 
 class EventListModal extends Component {
 
@@ -11,22 +11,51 @@ class EventListModal extends Component {
     this.props.closeEventList();
   }
 
+  joinEvent(eventId) {
+    const payload = {
+      eventId
+    };
+    this.props.joinEvent(payload);
+  }
+
+  renderJoinButton(isJoined, eventId) {
+    if (!isJoined) {
+      return (
+        <button className="btn btn-success" onClick={() => this.joinEvent(eventId)}>Join</button>
+      );
+    }
+  }
+
   renderEvents() {
     const { eventList } = this.props;
     return (
-       <div>
-           {eventList.map(d => {
-             return (
-              <div className = "row" key={d.name}>
-                <div className = "col-xs-2">{d.name}</div>
-                <div className = "col-xs-2">{d.location}</div>
-                <div className = "col-xs-2">{d.category}</div>
-                <div className = "col-xs-2">{d.startTime}</div>
-                <div className = "col-xs-2">{d.duration}</div>
-                <div className = "col-xs-2">{d.isJoined}</div>
-              </div>
-            );})}
-        </div>
+       <table className="table table-hover">
+         <thead>
+      <tr>
+        <th>title</th>
+        <th>location</th>
+        <th>category</th>
+        <th>day</th>
+        <th>start</th>
+        <th>duration</th>
+        <th>join</th>
+      </tr>
+    </thead>
+      <tbody>
+        {eventList.map(d => {
+          return (
+            <tr key={d.name}>
+              <td>{d.name}</td>
+              <td>{d.location}</td>
+              <td>{d.category}</td>
+              <td>{d.weekday}</td>
+              <td>{d.startTime}</td>
+              <td>{d.duration}</td>
+              <td>{this.renderJoinButton(d.isJoined, d.id)}</td>
+            </tr>
+          );})}
+          </tbody>
+        </table>
      );
   }
 
@@ -50,7 +79,8 @@ class EventListModal extends Component {
 EventListModal.propTypes = {
   isShowEventListModal: PropTypes.bool,
   eventList: PropTypes.array,
-  closeEventList: PropTypes.func
+  closeEventList: PropTypes.func,
+  joinEvent: PropTypes.func
 };
 
 function mapStateToProps(state) {
@@ -61,7 +91,7 @@ function mapStateToProps(state) {
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({ closeEventList }, dispatch);
+  return bindActionCreators({ closeEventList, joinEvent }, dispatch);
 }
 
 export default connect(mapStateToProps, matchDispatchToProps)(EventListModal);
