@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
+import classnames from 'classnames';
 // import classnames from 'classnames';
 // import { connect } from 'react-redux';
 // import Spinner from 'share/Spinner';
 // import ActionSpinner from 'share/ActionSpinner';
 // import { bindActionCreators } from 'redux';
-
+const divStyle = {
+  marginTop: '10px'
+};
 export default class Login extends Component {
-//   constructor(props) {
-//     super(props);
-//   }
+
+ constructor() {
+    this.state = {
+      user: '',
+      password: ''
+    };
+  }
+
 
 //   componentDidMount() {
 //   }
@@ -16,20 +24,23 @@ export default class Login extends Component {
 //   componentWillReceiveProps(nextProps) {
 //   }
 
+  handleLogin() {
+    window.location = '/hackit/sport/123';
+  }
   handleSubmit(e) {
     e.preventDefault();
   }
 
   render() {
     return (
-     <div className="wrapper">
-          <h2 className="form-signin-heading">Please login</h2>
-          <input type="text" className="form-control" placeholder="Windows Id" id="Username" name="Username" value=""></input>
-          <input type="password" className="form-control" name="password" placeholder="Password" id="Password">
+     <div className={classnames('wrapper form-signin')}>
+          <h2 className={classnames('form-signin-heading')}>Please login</h2>
+          <input type="text" className={classnames('form-control')} placeholder="Windows Id" id="Username" name="Username"></input>
+          <input type="password" className={classnames('form-control')} name="password" placeholder="Password" id="Password">
           </input>
-          <button id="btnLogin" className="btn btn-lg btn-primary btn-block" style="margin-top:10px;" type="submit" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Logging in">Login</button>
-          <div className="text-danger validation-summary-valid" data-valmsg-summary="true"><ul><li style="display:none"></li>
-        </ul></div>
+          <button id="btnLogin" className={classnames('btn btn-lg btn-primary btn-block')} onClick={() => this.handleLogin() } style={divStyle}>Login</button>
+          <div className={classnames('text-danger validation-summary-valid')} data-valmsg-summary="true">
+        </div>
       </div>
     );
   }
