@@ -10,19 +10,19 @@ const divStyle = {
 };
 export default class Login extends Component {
   constructor() {
-    super();
-    this.state = {
-      username: '',
-      password: ''
-    };
-  }
+      super();
+      this.state = {
+          username: '',
+          password: ''
+      };
+    }
 
   handleLogin() {
-    $.post('http://localhost:57851/api/login/values/gaurav.kohirkar/darthvader123$', null,
-    function() {
-      window.location = '/hackit/sport/123';
+    $.post("http://localhost:57851/api/login/values/",null,
+    function(data, status){
+        window.location = '/hackit/sport/123';
     });
-  }
+}
 
   handleSubmit(e) {
     e.preventDefault();

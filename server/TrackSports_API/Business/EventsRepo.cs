@@ -12,7 +12,7 @@ namespace TrackSports_API.Business
         private string _conString = "data source=ldmcoredev.infotrack.com.au;initial catalog=TrackSports;user id=LDMS;password=LDMS;";
         public List<Event> GetEvents()
         {
-            List < Event > events=new List<Event>();
+            List<Event> events = new List<Event>();
             using (SqlConnection con = new SqlConnection(_conString))
             {
                 string sql = "select * from [Events]";
@@ -20,14 +20,15 @@ namespace TrackSports_API.Business
                 SqlCommand cmd = new SqlCommand(sql, con);
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
-                { Event ev=new Event();
+                {
+                    Event ev = new Event();
                     ev.Id = Convert.ToInt32(dr["EventId"]);
                     ev.Name = dr["Name"].ToString();
-                    ev.Location=dr["Location"].ToString();
-                    ev.Category=dr["Category"].ToString();
-                    ev.EventDay=dr["EventDay"].ToString();
+                    ev.Location = dr["Location"].ToString();
+                    ev.Category = dr["Category"].ToString();
+                    ev.EventDay = dr["EventDay"].ToString();
                     ev.DateTimeStart = dr["DateTimeStart"].ToString();
-                    ev.Duration=Convert.ToInt32(dr["Duration"]);
+                    ev.Duration = Convert.ToInt32(dr["Duration"]);
                     events.Add(ev);
                 }
                 con.Close();
@@ -40,9 +41,7 @@ namespace TrackSports_API.Business
             List<Event> events = new List<Event>();
             using (SqlConnection con = new SqlConnection(_conString))
             {
-                string sql = "select * FROM [Events], UsersEvents " +
-                             "where UsersEvents.EventId = [Events].EventId " +
-                             "and UsersEvents.UserId = " + userId;
+                string sql = "select * FROM [Events], UsersEvents UE, Users U where UE.EventId = [Events].EventId and U.UserId = UE.UserId and U.UserId = '" + userId + "' and Events.DateTimeStart > GETDATE() order by DateTimeStart asc ";
                 con.Open();
                 SqlCommand cmd = new SqlCommand(sql, con);
                 SqlDataReader dr = cmd.ExecuteReader();
