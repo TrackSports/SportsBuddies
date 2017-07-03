@@ -1,0 +1,32 @@
+// Spinner
+.SpinnerOverLap {
+  width: 100%;
+  height: 100%;
+  display: table;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  padding-top: 276px;
+}
+// ImportTemplateModal 
+
+.templateHead {
+  font-size: 17px;
+}
+
+.templateRecordRow {
+  border-top: 1px solid #ddd;
+  font-size: 15px;
+}
+
+.modalCancelBtn {
+  padding: 6px;
+}
+//
+.editorInvisible {
+  visibility: hidden;
+}
+
+.editorVisble {
+  visibility: visible;
+}

@@ -1,0 +1,451 @@
+/*start of layout css*/
+.documentContainer {
+  overflow-y: scroll;
+  position: relative;
+}
+
+.documentDisplay {
+  border: 1px solid black;
+}
+
+
+.textareClick, 
+.inputSectionHover {
+  background-color: #DBF1FF;
+}
+
+.sectionAlign {
+  height: 40px;
+  padding-top: 10px;
+}
+
+.isInEditModel {
+  width: 100%;
+}
+
+.rowGap{
+  margin-bottom: 5px;
+}
+
+.topNavMain {
+    background-color: #1895B5;
+    border-color: #1895B5;   
+    height: 60px;
+    padding-top: 10px;
+}
+
+
+.toolbarFlexItLogo {
+  width: 167px;
+  height: 40px;
+}
+
+.toolbarInfoTrack {
+  width: 142px;
+  height: 51px;
+  margin-top: -5px;
+}
+
+.toolbarImage {
+  height: 30px;
+}
+
+.toolbarContent {
+  margin-left: auto;
+  margin-right: auto;
+  overflow: visible;
+}
+
+.documentContent {
+  margin-left: auto;
+  margin-right: auto;
+  overflow: visible;
+}
+
+.SendEmailTextAlert {
+  margin-top: 13px;
+  color: #f5f5f5;
+  font-size: 1.1em;
+}
+
+
+.subSectionPadding {
+    padding-left: 28px;
+}
+
+.reducedSectionOrderGap {
+    width: 1.3%;
+}
+
+.reducedSubSectionOrderGap {
+    width: 5.5%;
+}
+
+.reducedSubSubSectionOrderGap {
+    width: 6.6%;
+}
+
+.documentSectionWrapper {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.btnColor {
+   background-color:#166D83;
+   border-color:#166D83;
+   &:hover {
+      background-color:#115465;
+      border-color:#115465;
+   }
+   &:active {
+      background-color:#115465;
+      border-color:#115465;
+      outline: none;
+        &:focus {
+            background-color:#144e5d;
+            border-color:#144e5d;
+            outline: none;
+        }      
+   }
+   &:focus {
+      background-color:#115465;
+      border-color:#115465;
+      outline: none;
+   }
+}
+
+/*end of layout css*/
+
+/*start of subSection css*/
+$non-padding: 0px;
+
+.subSectionRow {
+  padding: $non-padding
+}
+
+.subSubSectionRow {
+  padding: $non-padding
+}
+
+.subSectionGap {
+  width: 3%
+}
+.subSubSectionGap {
+  width: 9.8%
+}
+/*end of subSection css*/
+
+/*mouse hover and edit releated css*/
+
+.blockquoteSection {
+  padding-right: 68px;
+}
+
+.blockquoteLastSection {
+  float: right;
+  padding-left: 33px;
+}
+
+.blockquoteSpanFirst {
+   line-height: 40px;
+   display: inline-block;
+   padding-right: 7px;
+}
+
+.blockquoteSpanLast {
+   padding-bottom: 20px;
+}
+
+.editablequoteLeft {
+  border-right: 10px solid #B5B5B5;
+  padding-right: 26px;
+  position:relative;
+}
+.editablequoteRight {
+  border-right: 5px solid #B5B5B5;
+}
+
+.editingquoteLeft {
+  padding-right: 8px;
+  border-right: 10px solid #0099FF;
+}
+.editingquoteRight {
+  border-right: 2px solid #0099FF;
+}
+
+.unsendquoteLeft {
+  border-right: 10px solid #DBF1FF;
+}
+.unsendquoteRight {
+  border-right: 5px solid #DBF1FF;
+}
+
+.sendquoteLeft {
+  border-right: 10px solid rgb(130, 234, 162);
+}
+.sendquoteRight {
+  border-right: 5px solid rgb(130, 234, 162);
+}
+
+.rejectquote {
+  border-left: 10px solid #FAEAEA;
+  border-right: 5px solid #FAEAEA;
+}
+
+/*end of mouse hover and edit releated css*/
+
+/*content releated css*/
+.previousContent {
+  background: #FFF1F2;
+  padding: 2px 0px;
+  border-right: 10px solid #FFA7AB;
+}
+
+.currentContent {
+  background: #F1FEF5;
+  padding: 2px 0px;
+  border-right: 10px solid #A6FFBE;
+}
+
+.unchangedContent {
+  padding: 0px 0px 7px 0px;
+  background: none;
+}
+
+.action {
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+
+.actionBar {
+   text-align: center;
+   position: relative;
+   top: 18px;
+   min-height: 47px;
+}
+
+.actionReject {
+  background-color: #FDB7B7;
+  position: relative;
+  // top: 17px;
+  left: -6px;
+  cursor: pointer;
+}
+
+.actionAccept {
+  background-color: #D3FEDE;
+  position: relative;
+  // top: 17px;
+  cursor: pointer;
+}
+
+.rejectContent { 
+  background: #FFF1F2;
+}
+
+.acceptContent {
+  background: #F1FEF5;
+}
+
+.documentIframeWidth {
+  width: 44.5%;
+  padding: 0px 0px 0px 0px;
+}
+
+/*end of content releated css*/
+
+/*start of comment releated css*/
+.commentBtnDiv {
+  display: block;
+  position: absolute;
+  top: 8px;
+  cursor: pointer;
+}
+
+.commentIcon {
+  width: 31px;
+  height: 29px;
+}
+
+.commentBtnDivForDiscuss {
+  position: absolute;
+  left: 88%;
+  top: -175%;
+  cursor: pointer;
+}
+
+.commentIconForDiscuss {
+  width: 31px;
+  height: 29px;
+}
+
+.commentTextAreaSection {
+  padding-top:20px;
+  .commentTextArea {
+     width: 100%;
+     resize: none;
+  } 
+}
+
+.commentCancelBtn {
+  padding: 6px;
+}
+
+.commentContainer {
+  max-height: 500px;
+  overflow-y: auto;
+  .commentSection {
+      padding-top:5px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #ddd;
+      overflow: auto;
+  }
+  .commentContent {
+      font-size: inherit;
+      background-color: #FFF;
+      border: none;
+      margin: 0px;
+      font-family: 'Lato', sans-serif;
+    }
+  .commentNameAndDate {
+      float: right;
+    }
+}
+  
+// .commentHidenBox {
+//   background: rgba(255, 0, 0, 0);
+//     width: 42px;
+//     height: 38px;
+//     position: absolute;
+//     top: -10px;
+//     z-index: 1000;
+//     cursor: pointer;
+//     left: 59px;
+// }
+
+
+
+/*end of comment releated css*/
+
+/*start of universal css*/
+
+.hiddenElement {
+  display: none;
+}
+/*end of universal css*/
+
+
+
+.spinnerContainer {
+  width: 0;
+  left: -35px;
+  position: relative;
+  color: white;
+  font-size: 0.8em;
+  top: 4px;
+}
+
+.spinnerForCompleteButton {
+  left: -106px;
+}
+
+.SpinnerOverLap {
+  width: 100%;
+  height: 100%;
+  display: table;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  padding-top: 276px;
+}
+
+/* nsw vendorSolicitor css */
+
+/* start of vendorSolicitor */
+.selectActionRow {
+  margin-bottom: 10px;
+}
+/* end of vendorSolicitor */
+
+
+
+// Toolbar
+.extendWidth {
+  width: 10%;
+}
+
+
+.topNavUl { 
+  display: inline-block;
+  font-size: 29px;
+  font-weight: 300;
+  position: absolute;
+  top: 0px;
+  ul {
+    padding-left: 0px;
+    li {
+      list-style-type: none;
+      a {
+        color: #FFF;
+      }
+    }
+    li::before {
+      display: inline-block;
+      color: white;
+      content: "|"; 
+      margin: 0px 10px;
+    }
+  }
+}
+
+// document section
+.documentSectionTextarea {
+   max-height: 750px;
+   min-height: 38px;
+   resize: none;
+   box-sizing: border-box;
+   border: none;
+   width: 100%;
+   padding-top: 0px;
+   background-color: inherit;
+   -ms-overflow-style: none;
+   overflow-y: hidden !important; // for ie
+}
+
+// end of document section
+
+// User Activity Log
+.activityBtnCol {
+  margin-bottom: 14px;
+  top: -5px;
+}
+
+.activityGroupByDateSection {
+  padding: 5px 0px 5px 0px;
+  border-top: 1px solid #ddd;
+  color: #777;
+  margin: 0px;
+}
+
+.activitySection {
+  border-top: 1px solid #ccc;
+  padding-left: 14px;
+  padding-top: 9px;
+}
+
+.actionMsg {
+  font-size: 15px;
+  margin: 0px 0 6px;
+}
+
+.actionTime {
+  font-size: 13px;
+  color: #555;
+  font-family: monospace;
+}
+
+.actorName {
+  font-weight: 800;
+  color: #31708f;
+  margin-right: 5px;
+}

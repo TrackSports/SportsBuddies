@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <title>FlexIt</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/medium-draft/dist/medium-draft.css">
+    <link rel="stylesheet" href="/app.css" />
+  </head>
+  <body>
+
+      <div id="app" style="height: 100%"></div>
+      <!-- make it global as in the vs it will trigger second redner -->
+      <input id="upload_docx" type="file" name="file" class="hidden" />
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      
+      <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.17.0/js/jquery.fileupload-ui.js"></script>-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.17.0/js/vendor/jquery.ui.widget.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.17.0/js/jquery.iframe-transport.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.17.0/js/jquery.fileupload.js"></script>
+      <script>
+        window.API_BASE = '/flexit';
+      </script>
+      <script src="/vendor.js"></script>
+      <script src="/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,142 @@
+@import './variables';
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900,400italic');
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100%;
+    overflow: auto;
+    font-family: 'Lato', sans-serif !important;
+    font-size: 14px;
+    font-weight: 400;
+    height: 100%;
+    line-height: 1.3;
+    color: mineShaft !important;
+}
+
+input:disabled, textarea:disabled {
+    background: rgba(255,255,255,.15);
+}
+
+// start of overwrite bootstrap css
+:global .btn .caret {
+    margin-left: 4px;
+}
+// end of overwrite bootstrap css
+
+:global .md-RichEditor-root {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    padding: 0;
+}
+
+:global .public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-listLTR:before {
+    left: -46px;
+    position: absolute;
+    text-align: right;
+    width: 40px;
+    font-size: 13px;
+}
+
+:global .public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-depth1:before {
+  content: counter(ol0) ". " counter(ol1) ;
+  counter-increment: ol1; 
+}
+
+:global .public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-depth2:before {
+  content: counter(ol0) ". " counter(ol1) ". " counter(ol2);
+  counter-increment: ol2; 
+}
+
+// customize modal style 
+:global .importTemplateModal {
+  .modal-content{
+    top: 35px;
+    .modal-header {
+      font-size: 19px;
+    }
+  }
+}
+
+:global .commentModal {
+  .modal-content{
+    top: 35px;
+    .modal-header {
+      font-size: 19px;
+    }
+  }
+}
+
+:global .UserActivityModal {
+  .modal-content{
+    top: 35px;
+    font-weight: 500;
+    .modal-header {
+      font-size: 19px;
+    }
+    .modal-body {
+      max-height: 500px;
+      overflow-y: overlay;
+    }
+  }
+}
+
+:global .row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+// notification
+:global .notifications-tc {
+  width: auto !important;
+}
+
+:global .notification-message {
+  padding: 0px 4px !important;
+}
+
+
+//cursor-pointer
+:global .cursor-pointer {
+  cursor: pointer;
+}
+
+//IE style
+:global .iframeCoverForIE {
+    position: absolute;
+    border: none;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    border: none;
+    background-color: rgba(0,0,0,.0001);
+}
+
+@media print {
+  body {
+    visibility: hidden;
+  }
+  :global .UserActivityModal {
+    .modal-content{
+      top: 0px;
+      font-weight: 500;
+      .modal-header {
+        visibility: visible;
+        font-size: 19px;
+      }
+      .modal-body {
+        visibility: visible;
+        max-height: inherit;
+        page-break-after: auto;
+        padding: 15px 15px 0px 15px;
+      }
+      .modal-footer {
+        display: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+@import '../settings.styl'
+
+makeButton(bgColor, borderColor, textColor)
+  background-color: bgColor
+  color: textColor
+  border: 1px solid borderColor
+  margin: 0
+  
+  &:hover,
+  &:focus
+    color: textColor
+  
+  &:hover:not([disabled])
+    border: 1px darken(borderColor, 15) solid
+    background-color: darken(bgColor, 15)
+
+  &[disabled]
+    cursor: default
+
+.primary
+  makeButton(primaryButtonColor, primaryButtonColor, white)
+
+.orange
+  makeButton(carrotOrange, carrotOrange, white)
+
+.default
+  makeButton(#fff, #ccc, mineShaft)
+  
+  &:hover:not([disabled])
+    border: 1px #ccc solid
+
+
+.icon
+  cursor: pointer
+  color: iconButtonColor
+
+  &.defaultSize
+    font-size: 2rem
+
+  &:hover
+    color: iconButtonHoverColor
