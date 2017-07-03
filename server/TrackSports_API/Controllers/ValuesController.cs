@@ -37,7 +37,7 @@ namespace TrackSports_API.Controllers
             return "value";
         }
 
-        [HttpPost("/login/{username}/{password}")]
+        [HttpPost("login/{username}/{password}")]
         [AllowAnonymous]
         public IActionResult Login(string username, string password)
         {
