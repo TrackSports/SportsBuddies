@@ -34,6 +34,16 @@ namespace TrackSports_API.Controllers
         public List<Event> GetAllEvents()
         {
             List<Event> events = _eventsRepo.GetEvents();
+
+            List<EventByUser> retEvents = new List<EventByUser>();
+            foreach (var ev in retEvents)
+            {
+                var evByUser = new EventByUser();
+                evByUser.userId = ""; //evByUser.events.ForEach(x => x.IsJoined = IsUserJoinedEvent(userId, x.Id));
+                evByUser.IsJoined = true;
+                retEvents.Add(evByUser);
+            }
+
             return events;
         }
 

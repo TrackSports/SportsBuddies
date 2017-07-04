@@ -59,7 +59,6 @@ namespace TrackSports_API.Business
                 }
                 con.Close();
             }
-            events.ForEach(x => x.IsJoined = IsUserJoinedEvent(userId, x.Id));
             return events;
         }
 
