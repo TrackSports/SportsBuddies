@@ -45,7 +45,7 @@ export class Toolbar extends Component {
                 <li><a onClick={() => this.createEvent() }>create your own</a></li>
               </ul>
             </div>
-
+            </div>
           </div>
         <EventListModal />
         <NewEventModal />
