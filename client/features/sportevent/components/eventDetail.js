@@ -17,19 +17,26 @@ class EventDetail extends Component {
       return null;
     }
     return (
-      <div>
+      <div className="detailContainer">
           <div>
+            <span style={{ fontSize: 28 }} className="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
             <span className="h2" >Name: </span>
             <span style={{ fontSize: 28 }}>{selectedEvent.name}</span>
           </div>
           <div>
+            <span style={{ fontSize: 28 }} className="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
             <span className="h2" >Address: </span>
             <span style={{ fontSize: 28 }}>{selectedEvent.location}</span>
             <br />
-            <img src={"https://maps.googleapis.com/maps/api/staticmap?center=Domain+sydney&zoom=15&marker&size=600x300&key=AIzaSyCw1cBpPP1OilflaK_S2Pw_hD-grXcXepw"} />
-            <span style={{ color: 'red', Position: 'relative', left: '-300', fontSize: 30 }} className="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+            <div className="mapOuterContainer">
+              <div className="mapInnerContainer">
+                <img className="mapItem" src={"https://maps.googleapis.com/maps/api/staticmap?center=Domain+sydney&zoom=15&marker&size=600x300&key=AIzaSyCw1cBpPP1OilflaK_S2Pw_hD-grXcXepw"} />
+                <span className="glyphicon glyphicon-map-marker mapMarker" aria-hidden="true"></span>
+              </div>
+            </div>
           </div>
           <div style={{ marginTop: 5 }}>
+            <span style={{ fontSize: 28 }} className="glyphicon glyphicon-th-list" aria-hidden="true"></span>
             <span className="h2" >Category: </span>
             <span style={{ fontSize: 28 }}>{selectedEvent.category}</span>
           </div>
@@ -39,9 +46,12 @@ class EventDetail extends Component {
             <span style={{ fontSize: 26 }}>{selectedEvent.weekday}</span>
           </div>
           <div style={{ marginTop: 5 }}>
-            <span style={{ fontSize: 28 }} className="glyphicon glyphicon-time" aria-hidden="true"></span>
+            <span style={{ fontSize: 28 }} className="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
             <span className="h2" >Time: </span>
             <span style={{ fontSize: 26 }}>{selectedEvent.startTime}</span>
+          </div>
+          <div style={{ marginTop: 5 }}>
+            <span style={{ fontSize: 28 }} className="glyphicon glyphicon-time" aria-hidden="true"></span>
              <span className="h2" >Duration: </span>
             <span style={{ fontSize: 26 }}>{selectedEvent.duration}</span>
           </div>

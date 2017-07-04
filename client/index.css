@@ -1,0 +1,125 @@
+.header{
+            width:100%;
+            height:100px;
+            position:fixed;
+            left:0;
+            right:0;
+            top:0;
+            background-color:#0094ff;
+            padding: 20px;
+            text-align: center;
+            z-index: 1041;
+        }
+        .barIcon{
+            cursor: pointer;
+        }
+        .barIcon a{
+            color: white;
+        }
+
+        .barSearch{
+            margin: 0 auto;
+        }
+        .barSearchField{
+            min-width:400px;
+        }
+
+        .barMenu{
+            
+        }
+
+        .barMenu a{
+            cursor: pointer;
+            color: white;
+        }
+
+        .nav > li > a:hover,
+        .nav > li > a:focus {
+        text-decoration: none;
+        background-color: #00b7fc !important;
+        }
+
+
+
+
+        .midbody{
+            position:absolute;
+            top:100px;
+            left:0;
+            right:0;
+            height:100%;
+            /*background-color:orange;*/
+        }
+
+
+        .sidebar{
+            position:absolute;
+            top:0;
+            left:0;
+            width:300px;
+            height:100%;
+            background-color:#333;
+            color:white;
+            padding: 5px;
+        }
+        .sidebarTitle{
+            font-size: 24px;
+            margin: 5px;
+            margin-left: 10px;
+        }
+        .sidebarItem{
+            color: lightskyblue;
+            cursor: pointer;
+        }
+        .sidebarSearchField{
+            margin-left: -15px;
+        }
+
+        .mainContent{
+            position:absolute;
+            left:300px;
+            right:0;
+        }
+        .detailContainer span{
+            margin-right: 5px;
+        }
+
+        .detailContainer{
+            padding: 20px;
+            color: #333;
+        }
+        .mapMarker{
+            color: red;
+            position: absolute;
+            font-size: 28px;
+            left: 300px;
+            top: 130px;
+        }
+        .mapOuterContainer{
+            width: 600px;
+            height: 300px;
+        }
+        .mapInnerContainer{
+            position: absolute;
+        }
+        .mapItem{
+            position: absolute;
+        }
+        .glyphicon{
+            margin-right: 10px !important;
+        }
+
+        
+
+        .eventlist{
+            width: 260px;
+            background-color: black;
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+        }
+        .eventlist-highlight{
+            border-bottom: solid 5px #03f503;
+            background-color: green;
+        }
+        

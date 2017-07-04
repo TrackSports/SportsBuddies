@@ -21,11 +21,11 @@ class YourEvent extends Component {
     const { eventList } = this.props;
     return (
       <div>
-          <div>Your Events</div>
+          <div className="sidebarTitle">Your Events</div>
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <form className="navbar-form navbar-left">
               <div className="form-group">
-                <input type="text" className="form-control" placeholder="Search" />
+                <input type="text" className="form-control sidebarSearchField" placeholder="Search" />
               </div>
             </form>
           </div>
@@ -34,7 +34,7 @@ class YourEvent extends Component {
               <ul className="nav nav-pills nav-stacked">
                 {eventList.map(d => {
                   return (
-                    <li key={d.id} role="presentation"><a onClick={() => { this.showTheEvent(d.id); }}> {d.eventDay} {d.name}</a></li>
+                    <li key={d.id} role="presentation"><a className="sidebarItem" onClick={() => { this.showTheEvent(d.id); }}> {d.weekday} {d.name}</a></li>
                   );})}
               </ul>
             </div>
