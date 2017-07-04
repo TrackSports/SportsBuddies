@@ -60,7 +60,7 @@ namespace TrackSports_API.Controllers
 
         [HttpGet("geteventsbyuser/{userid}")]
         [HttpPost("geteventsbyuser/{userid}")]
-        public IActionResult GetEventsByUserId(string userid)
+        public List<EventDetails> GetEventsByUserId(string userid)
         {
             List<Event> events = _eventsRepo.GetEventsByUserId(userid);
             List<EventDetails> retEvents = new List<EventDetails>();
@@ -72,7 +72,7 @@ namespace TrackSports_API.Controllers
                 evByUser.Members = _eventsRepo.GetUsersByEvent(ev.Id);
                 retEvents.Add(evByUser);
             }
-            return events.ToJSON();
+            return retEvents;
         }
 
         [HttpPost("joinevent/{userid}/{eventid}")]
