@@ -48,6 +48,9 @@ export default createReducer(InitialState, Object.assign(
     [ActionTypes.HIDE_EVENT_LIST_MODAL]: (state) => {
       return { ...state, isShowEventListModal: false };
     },
+    [ActionTypes.GET_EVENT_LIST_SUCCESS]: (state) => {
+      return { ...state, isShowEventListModal: false };
+    },
     [ActionTypes.CREATE_EVENT]: (state) => {
       return { ...state, isShowNewEventModal: true };
     },
