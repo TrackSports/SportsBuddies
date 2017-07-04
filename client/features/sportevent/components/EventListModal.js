@@ -61,6 +61,7 @@ class EventListModal extends Component {
 
   render() {
     return (
+      
       <Modal customerClassName = "commentModal" show={ this.props.isShowEventListModal } onHide={() => this.handleClose()}>
         <Modal.Header closeButton>
           <Modal.Title>event</Modal.Title>
@@ -72,6 +73,8 @@ class EventListModal extends Component {
           <button className={classnames('btn btn-default')} onClick={() => this.handleClose()}>Cancel</button>
         </Modal.Footer>
       </Modal>
+     
+      
     );
   }
 }

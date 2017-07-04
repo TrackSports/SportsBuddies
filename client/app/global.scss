@@ -116,6 +116,24 @@ input:disabled, textarea:disabled {
     background-color: rgba(0,0,0,.0001);
 }
 
+
+// css here
+
+:global .navbar {
+    width:100%;
+    height:200px;
+    position:fixed;
+    left:0;
+    right:0;
+    top:0;
+    background-color:#0094ff;
+}
+
+
+// end of css
+
+
+
 @media print {
   body {
     visibility: hidden;
