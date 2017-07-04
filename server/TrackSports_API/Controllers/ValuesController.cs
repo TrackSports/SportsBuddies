@@ -63,6 +63,15 @@ namespace TrackSports_API.Controllers
         public IActionResult GetEventsByUserId(string userid)
         {
             List<Event> events = _eventsRepo.GetEventsByUserId(userid);
+            List<EventDetails> retEvents = new List<EventDetails>();
+            foreach (var ev in events)
+            {
+                EventDetails evByUser = ev.ToEvetDetails();
+                evByUser.UserId = userid;
+                evByUser.IsJoined = _eventsRepo.IsUserJoinedEvent(userid, ev.Id);
+                evByUser.Members = _eventsRepo.GetUsersByEvent(ev.Id);
+                retEvents.Add(evByUser);
+            }
             return events.ToJSON();
         }
 
