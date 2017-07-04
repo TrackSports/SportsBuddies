@@ -50,12 +50,16 @@ export default createReducer(InitialState, Object.assign(
       return { ...state, selectedEvent: choosenEvent };
     },
     [ActionTypes.GET_ALL_RELEATED_EVENT]: (state, action) => {
-      const accessCode = action.payload.accessCode;
-      debugger
-      // $.get('http://localhost:57851/api/geteventsbyuser/xinxin.li', null,
+      const accessCode = action.payload;
+      // let eventListAssignedToYou = [];
+      // $.get(`http://localhost:57851/api/values/geteventsbyuser/${accessCode}`, null,
       //   function(data) {
-      //     debugger
-      // });
+      //     if (data) {
+      //       eventListAssignedToYou = data;
+      //       return { ...state, eventList: eventListAssignedToYou };
+      //     }
+      //   });
+         
       return { ...state };
     }
 
