@@ -33,7 +33,7 @@ export class Toolbar extends Component {
                   <input type="text" className=" form-control barSearchField" placeholder="Search" />
                 </div>
               </form>
-            </div>            
+            </div>
             <div className="barMenu" id="bs-example-navbar-collapse-1">
               <ul className="nav navbar-nav">
                 <li><a onClick={() => this.showEventList() }>event list</a></li>
