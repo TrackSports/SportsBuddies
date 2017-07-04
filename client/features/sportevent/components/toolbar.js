@@ -27,6 +27,12 @@ export class Toolbar extends Component {
             <div className="barIcon">
               <a className="navbar-brand" href="#">Sport</a>
             </div>
+            <div className="barMenu" id="bs-example-navbar-collapse-1">
+              <ul className="nav navbar-nav">
+                <li><a onClick={() => this.showEventList() }>event list</a></li>
+                <li><a onClick={() => this.createEvent() }>create your own</a></li>
+              </ul>
+            </div>
             <div className="barSearch">
               <form className="navbar-form navbar-left">
                 <div className="form-group">
@@ -34,12 +40,7 @@ export class Toolbar extends Component {
                 </div>
               </form>
             </div>            
-            <div className="barMenu" id="bs-example-navbar-collapse-1">
-              <ul className="nav navbar-nav">
-                <li><a onClick={() => this.showEventList() }>event list</a></li>
-                <li><a onClick={() => this.createEvent() }>create your own</a></li>
-              </ul>
-            </div>
+            
           </div>
         <EventListModal />
         <NewEventModal />

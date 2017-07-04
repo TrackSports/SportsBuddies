@@ -82,6 +82,7 @@
         }
         .detailContainer span{
             margin-right: 5px;
+            margin-top:10px;
         }
 
         .detailContainer{
@@ -137,4 +138,20 @@
 
         .loginInnerContainer input{
             margin-top: 10px;
+        }
+
+        
+        .baseDetail{
+            margin-right: 20px;
+            float:left;
+        }
+
+        .subscribers{
+            
+            float:left;
+            width:600px;
+        }
+
+        .subscriberItem{
+            font-size: 24px;
         }
