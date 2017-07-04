@@ -16,12 +16,12 @@ namespace TrackSports_API.TracksportModels
         public int Duration { get; set; }
     }
     public class EventByUser: Event{
-        public string userId { get; set; }
+        public string UserId { get; set; }
         public bool IsJoined { get; set; }
     }
 
     public class EventDetails : EventByUser
     {
-        public List<string> UsersJoined { get; set; }
+        public List<string> Members { get; set; }
     }
 }
