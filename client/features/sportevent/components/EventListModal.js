@@ -20,7 +20,6 @@ class EventListModal extends Component {
       eventId
     };
     this.props.joinEvent(payload);
-    debugger
     
     let userId = location.href.substr(location.href.lastIndexOf('/') + 1);
     userId = userId.replace('-', '.');
