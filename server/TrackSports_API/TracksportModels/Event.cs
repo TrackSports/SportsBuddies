@@ -14,6 +14,14 @@ namespace TrackSports_API.TracksportModels
         public string EventDay { get; set; }
         public string DateTimeStart { get; set; }
         public int Duration { get; set; }
+    }
+    public class EventByUser: Event{
+        public string userId { get; set; }
         public bool IsJoined { get; set; }
+    }
+
+    public class EventDetails : EventByUser
+    {
+        public List<string> UsersJoined { get; set; }
     }
 }
