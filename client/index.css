@@ -8,6 +8,7 @@
             background-color:#0094ff;
             padding: 20px;
             text-align: center;
+            z-index: 1041;
         }
         .barIcon{
             cursor: pointer;
