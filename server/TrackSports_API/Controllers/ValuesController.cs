@@ -30,18 +30,18 @@ namespace TrackSports_API.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("allevents")]
-        public List<EventDetails> GetAllEvents()
+        [HttpGet("allevents/{username}")]
+        public List<EventDetails> GetAllEvents(string username)
         {
             List<Event> events = _eventsRepo.GetEvents();
 
             List<EventDetails> retEvents = new List<EventDetails>();
-            foreach (var ev in retEvents)
+            foreach (var ev in events)
             {
                 EventDetails evByUser = ev.ToEvetDetails();
-                evByUser.userId = ""; //evByUser.events.ForEach(x => x.IsJoined = IsUserJoinedEvent(userId, x.Id));
-                evByUser.IsJoined = true;
-                evByUser.UsersJoined = _eventsRepo.GetUsersByEvent(ev.Id);
+                evByUser.UserId = username;
+                evByUser.IsJoined = _eventsRepo.IsUserJoinedEvent(username, ev.Id);
+                evByUser.Members = _eventsRepo.GetUsersByEvent(ev.Id);
                 retEvents.Add(evByUser);
             }
 
