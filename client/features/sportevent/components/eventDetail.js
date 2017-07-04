@@ -18,6 +18,7 @@ class EventDetail extends Component {
     }
     return (
       <div className="detailContainer">
+        <div className="baseDetail">
           <div>
             <span style={{ fontSize: 28 }} className="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
             <span className="h2" >Name: </span>
@@ -55,16 +56,18 @@ class EventDetail extends Component {
              <span className="h2" >Duration: </span>
             <span style={{ fontSize: 26 }}>{selectedEvent.duration}</span>
           </div>
-          <div></div>
-          <div className="panel panel-default">
+        </div>
+        <div className="subscribers">
+          <div className="panel panel-default subscribers">
             <div className="panel-heading">Attending members</div>
             <div className="panel-body">
              {selectedEvent.members.map(d => {
                return (
-                  <li key={d}> {d}</li>
+                  <li className="subscriberItem" key={d}> <span style={{ fontSize: 28 }} className="glyphicon glyphicon-user" aria-hidden="true"></span>{d}</li>
                 );})}
             </div>
           </div>
+        </div>
       </div>
     );
   }
