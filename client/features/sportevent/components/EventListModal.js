@@ -20,6 +20,16 @@ class EventListModal extends Component {
       eventId
     };
     this.props.joinEvent(payload);
+    debugger
+    
+    let userId = location.href.substr(location.href.lastIndexOf('/') + 1);
+    userId = userId.replace('-', '.');
+    $.post(`http://localhost:57851/api/values/joinevent/${userId}/${eventId}`, null,
+    function(data) {
+      debugger
+      location.reload();
+    });
+
   }
 
   renderJoinButton(isJoined, eventId) {
