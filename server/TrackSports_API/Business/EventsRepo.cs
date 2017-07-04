@@ -10,6 +10,25 @@ namespace TrackSports_API.Business
     public class EventsRepo
     {
         private string _conString = "data source=ldmcoredev.infotrack.com.au;initial catalog=TrackSports;user id=LDMS;password=LDMS;";
+
+        public List<string> GetUsersByEvent(int eventId)
+        {
+            List<string> users = new List<string>();
+            using (SqlConnection con = new SqlConnection(_conString))
+            {
+                string sql = "select userId from [UsersEvents] where eventid=" + eventId;
+                con.Open();
+                SqlCommand cmd = new SqlCommand(sql, con);
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    users.Add(dr["userId"].ToString());
+                }
+                con.Close();
+            }
+            return users;
+        }
+
         public List<Event> GetEvents()
         {
             List<Event> events = new List<Event>();
@@ -142,7 +161,6 @@ namespace TrackSports_API.Business
             }
             return false;
         }
-
 
         public bool RemoveUserFromEvent(string userId, int eventId)
         {

@@ -31,20 +31,21 @@ namespace TrackSports_API.Controllers
 
         // GET api/values/5
         [HttpGet("allevents")]
-        public List<Event> GetAllEvents()
+        public List<EventDetails> GetAllEvents()
         {
             List<Event> events = _eventsRepo.GetEvents();
 
-            List<EventByUser> retEvents = new List<EventByUser>();
+            List<EventDetails> retEvents = new List<EventDetails>();
             foreach (var ev in retEvents)
             {
-                var evByUser = new EventByUser();
+                EventDetails evByUser = ev.ToEvetDetails();
                 evByUser.userId = ""; //evByUser.events.ForEach(x => x.IsJoined = IsUserJoinedEvent(userId, x.Id));
                 evByUser.IsJoined = true;
+                evByUser.UsersJoined = _eventsRepo.GetUsersByEvent(ev.Id);
                 retEvents.Add(evByUser);
             }
 
-            return events;
+            return retEvents;
         }
 
         [HttpPost("saveevent/{name}/{category}/{location}/{eventday}/{datetimeStart}/{duration}/{username}")]

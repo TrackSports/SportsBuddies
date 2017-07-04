@@ -20,7 +20,7 @@ namespace TrackSports_API.TracksportModels
         public bool IsJoined { get; set; }
     }
 
-    public class EventDetails : Event
+    public class EventDetails : EventByUser
     {
         public List<string> UsersJoined { get; set; }
     }
