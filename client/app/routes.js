@@ -7,6 +7,6 @@ import SportEvent from 'features/sportevent/components';
 export default (
   <Route path="/hackit" component={Layout}>
     <Route path="sport/login/:AccessCode" component={Login} />
-    <Route path="sport/:AccessCode" component={SportEvent} />
+    <Route path="sport/:accessCode" component={SportEvent} />
   </Route>
 );

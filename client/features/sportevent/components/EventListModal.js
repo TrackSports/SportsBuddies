@@ -6,6 +6,10 @@ import { bindActionCreators } from 'redux';
 import { closeEventList, joinEvent } from 'features/sportevent/actions/toolbarAction';
 
 class EventListModal extends Component {
+  // componentDidMount() {
+  //   // load ajax
+  //   const { params: { accessCode } } = this.props;
+  // }
 
   handleClose() {
     this.props.closeEventList();
@@ -78,6 +82,7 @@ class EventListModal extends Component {
 
 EventListModal.propTypes = {
   isShowEventListModal: PropTypes.bool,
+  params: PropTypes.object,
   eventList: PropTypes.array,
   closeEventList: PropTypes.func,
   joinEvent: PropTypes.func

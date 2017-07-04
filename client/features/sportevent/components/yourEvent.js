@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 // import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { showEventDetail } from 'features/sportevent/actions/eventDetailAction';
+import { showEventDetail, getAllRelatedEvent } from 'features/sportevent/actions/eventDetailAction';
 
 class YourEvent extends Component {
 
@@ -45,7 +45,9 @@ class YourEvent extends Component {
 
 YourEvent.propTypes = {
   showEventDetail: PropTypes.func,
-  eventList: PropTypes.array
+  getAllRelatedEvent: PropTypes.func,
+  eventList: PropTypes.array,
+  params: PropTypes.object
 };
 
 function mapStateToProps(state) {
@@ -54,7 +56,7 @@ function mapStateToProps(state) {
   };
 }
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({ showEventDetail }, dispatch);
+  return bindActionCreators({ showEventDetail, getAllRelatedEvent }, dispatch);
 }
 
 export default connect(mapStateToProps, matchDispatchToProps)(YourEvent);

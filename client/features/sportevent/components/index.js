@@ -1,23 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 // import classnames from 'classnames';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 // import Spinner from 'share/Spinner';
 // import ActionSpinner from 'share/ActionSpinner';
-// import { bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux';
 import EventDetail from './EventDetail';
 import Toolbar from './toolbar';
 import YourEvent from './YourEvent';
+import { getAllRelatedEvent } from 'features/sportevent/actions/eventDetailAction';
 
-export default class SportEvent extends Component {
-//   constructor(props) {
-//     super(props);
-//   }
+class SportEvent extends Component {
 
-//   componentDidMount() {
-//   }
-
-//   componentWillReceiveProps(nextProps) {
-//   }
+  componentDidMount() {
+    // load ajax
+    const { params: { accessCode } } = this.props;
+    this.props.getAllRelatedEvent(accessCode);
+  }
 
   handleSubmit(e) {
     e.preventDefault();
@@ -41,3 +39,14 @@ export default class SportEvent extends Component {
     );
   }
 }
+
+SportEvent.propTypes = {
+  getAllRelatedEvent: PropTypes.func,
+  params: PropTypes.object
+};
+
+function matchDispatchToProps(dispatch) {
+  return bindActionCreators({ getAllRelatedEvent }, dispatch);
+}
+
+export default connect(null, matchDispatchToProps)(SportEvent);

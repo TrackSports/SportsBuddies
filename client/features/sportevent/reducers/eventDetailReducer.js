@@ -48,6 +48,11 @@ export default createReducer(InitialState, Object.assign(
       const eventId = action.payload.eventId;
       const choosenEvent = state.eventList.filter((event) => { return event.id === eventId; })[0];
       return { ...state, selectedEvent: choosenEvent };
+    },
+    [ActionTypes.GET_ALL_RELEATED_EVENT]: (state, action) => {
+      // const accessCode = action.payload.accessCode;
+      return { ...state };
     }
+
 
   }));
