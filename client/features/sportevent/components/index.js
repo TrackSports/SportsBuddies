@@ -12,9 +12,9 @@ import { getAllRelatedEvent } from 'features/sportevent/actions/eventDetailActio
 class SportEvent extends Component {
 
   componentDidMount() {
-    // load ajax
     const { params: { accessCode } } = this.props;
-    this.props.getAllRelatedEvent(accessCode);
+    const username = accessCode.replace('-', '.');
+    this.props.getAllRelatedEvent(username);
   }
 
   handleSubmit(e) {

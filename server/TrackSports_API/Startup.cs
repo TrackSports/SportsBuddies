@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using TrackSports.Authentication.Models;
+using Newtonsoft.Json.Serialization;
 
 namespace TrackSports_API
 {
@@ -28,9 +29,14 @@ namespace TrackSports_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
-            services.AddMvc();
+            // Add framework services
+            services.AddMvc().AddJsonOptions(options =>
+            {
+                options.SerializerSettings.ContractResolver =
+                    new CamelCasePropertyNamesContractResolver();
+            });
             services.Configure<LdapConfig>(Configuration.GetSection("Ldap"));
+         
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

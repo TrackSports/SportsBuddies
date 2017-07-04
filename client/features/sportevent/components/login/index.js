@@ -18,9 +18,12 @@ export default class Login extends Component {
   }
 
   handleLogin() {
-    $.post('http://localhost:57851/api/login/values/', null,
+    const username = this.username.value;
+    const password = this.password.value;
+    $.post(`http://localhost:57851/api/values/login/${username}/${password}`, null,
     function() {
-      window.location = '/hackit/sport/123';
+      const path = username.replace('.', '-');
+      window.location = `/hackit/sport/${path}`;
     });
   }
 
@@ -32,8 +35,8 @@ export default class Login extends Component {
     return (
      <div className={classnames('wrapper form-signin')}>
           <h2 className={classnames('form-signin-heading')}>Please login</h2>
-          <input type="text" className={classnames('form-control')} placeholder="Windows Id" id="Username" name="Username" />
-          <input type="password" className={classnames('form-control')} name="password" placeholder="Password" id="Password" />
+          <input type="text" className={classnames('form-control')} placeholder="Windows Id" id="Username" name="Username" ref={(input) => { this.username = input; }}/>
+          <input type="password" className={classnames('form-control')} name="password" placeholder="Password" id="Password" ref={(input) => { this.password = input; }}/>
           <button id="btnLogin" className={classnames('btn btn-lg btn-primary btn-block')} onClick={() => this.handleLogin() } style={divStyle}>Login</button>
           <div className={classnames('text-danger validation-summary-valid')} data-valmsg-summary="true">
         </div>

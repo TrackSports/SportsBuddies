@@ -46,6 +46,7 @@ namespace TrackSports_API.Controllers
                 return null;
         }
 
+        [HttpGet("geteventsbyuser/{userid}")]
         [HttpPost("geteventsbyuser/{userid}")]
         public List<Event> GetEventsByUserId(string userid)
         {
