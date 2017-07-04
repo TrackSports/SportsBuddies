@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc;
 
 namespace TrackSports_API.TracksportModels
 {
     public static class Extensions
     {
-        public static string ToJSON(this object obj)
+        public static JsonResult ToJSON(this object obj)
         {
-            return JsonConvert.SerializeObject(obj);
+            return new JsonResult(JsonConvert.SerializeObject(obj));
         }
 
     }
