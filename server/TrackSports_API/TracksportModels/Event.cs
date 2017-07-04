@@ -14,6 +14,6 @@ namespace TrackSports_API.TracksportModels
         public string EventDay { get; set; }
         public string DateTimeStart { get; set; }
         public int Duration { get; set; }
-
+        public bool IsJoined { get; set; }
     }
 }

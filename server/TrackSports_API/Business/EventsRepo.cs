@@ -59,6 +59,7 @@ namespace TrackSports_API.Business
                 }
                 con.Close();
             }
+            events.ForEach(x => x.IsJoined = IsUserJoinedEvent(userId, x.Id));
             return events;
         }
 
@@ -127,11 +128,30 @@ namespace TrackSports_API.Business
 
         public bool JoinUserToEvent(string userId, int eventId)
         {
-            if (UserExists(userId) &&  !IsUserJoinedEvent(userId, eventId))
+            if (UserExists(userId) && !IsUserJoinedEvent(userId, eventId))
             {
                 using (SqlConnection con = new SqlConnection(_conString))
                 {
                     string sql = string.Format("insert [UsersEvents] ([UserId], [EventId]) Values ('{0}', {1})", userId, eventId);
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(sql, con);
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+                return true;
+            }
+            return false;
+        }
+
+
+        public bool RemoveUserFromEvent(string userId, int eventId)
+        {
+            if (UserExists(userId) && IsUserJoinedEvent(userId, eventId))
+            {
+                using (SqlConnection con = new SqlConnection(_conString))
+                {
+                    string sql = string.Format("delete from UsersEvents where userId = '" + userId + "' and eventId = '" + eventId + "'");
                     con.Open();
                     SqlCommand cmd = new SqlCommand(sql, con);
                     cmd.CommandType = System.Data.CommandType.Text;

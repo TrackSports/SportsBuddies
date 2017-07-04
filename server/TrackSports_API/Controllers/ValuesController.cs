@@ -68,6 +68,20 @@ namespace TrackSports_API.Controllers
             throw new Exception("Eventid is not int");
         }
 
+        [HttpPost("removeuserevent/{userid}/{eventid}")]
+        public IActionResult RemoveUserEvent(string userid, string eventid)
+        {
+            int evId = 0;
+            if (int.TryParse(eventid, out evId))
+            {
+                if (_eventsRepo.RemoveUserFromEvent(userid, evId))
+                    return _eventsRepo.GetEventsByUserId(userid).ToJSON();
+                else
+                    return null;
+            }
+            throw new Exception("Eventid is not int");
+        }
+
         [HttpPost("login/{username}/{password}")]
         [AllowAnonymous]
         public IActionResult Login(string username, string password)
