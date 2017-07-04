@@ -11,6 +11,7 @@ using TrackSports.Authentication.Models;
 using Microsoft.Extensions.Options;
 using TrackSports_API.Business;
 using TrackSports_API.TracksportModels;
+using System.Text.RegularExpressions;
 
 namespace TrackSports_API.Controllers
 {
@@ -52,6 +53,7 @@ namespace TrackSports_API.Controllers
         public List<Event> SaveEvent(string name, string category, string location, string eventday, string datetimestart, string duration, string username)
         {
 
+            eventday = eventday.Replace("{", "")?.Replace("}","");
             if (_eventsRepo.SaveNewEvent(new Event() { Name = name, Category = category, Location = location, EventDay = eventday, DateTimeStart = datetimestart, Duration = int.Parse(duration) }))
                 return _eventsRepo.GetEventsByUserId(username);
             else

@@ -43,6 +43,13 @@ class NewEventModal extends Component {
       duration: this.durationInput.value,
       desciption: this.descriptionInput.value
     };
+    debugger;
+    $.post(`http://localhost:57851/api/values/saveevent/${payload.name}/${payload.catgegory}/${payload.location}/{${payload.weekDay}}/${payload.startTime}/${payload.duration}/gaurav.kohirkar}`, null,
+    function(data) {
+      debugger;
+      location.reload();
+    });
+
     this.props.createEventSuccess(payload);
   }
 
