@@ -49,8 +49,8 @@ export default createReducer(InitialState, Object.assign(
       const choosenEvent = state.eventList.filter((event) => { return event.id === eventId; })[0];
       return { ...state, selectedEvent: choosenEvent };
     },
-    [ActionTypes.GET_ALL_RELEATED_EVENT]: (state, action) => {
-      const accessCode = action.payload;
+    [ActionTypes.GET_ALL_RELEATED_EVENT_SUCCESS]: (state, action) => {
+      const events = action.payload;
       // let eventListAssignedToYou = [];
       // $.get(`http://localhost:57851/api/values/geteventsbyuser/${accessCode}`, null,
       //   function(data) {
@@ -59,8 +59,8 @@ export default createReducer(InitialState, Object.assign(
       //       return { ...state, eventList: eventListAssignedToYou };
       //     }
       //   });
-         
-      return { ...state };
+
+      return { ...state, eventList: events };
     }
 
 

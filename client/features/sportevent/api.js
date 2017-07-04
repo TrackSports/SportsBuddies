@@ -1,9 +1,9 @@
 import request from 'utils/request';
 
-export const getVendorSolicitorDocument = (documentId) => {
-  return request.get(`nswvs/document/${documentId}`);
+export const getEventById = (accessCode) => {
+  return request.get(`http://localhost:57851/api/values/allevents/${accessCode}`);
 };
 
-export const createTemplate = (payload) => {
-  return request.post('document/createTemplate', payload);
-};
+// export const createTemplate = (payload) => {
+//   return request.post('document/createTemplate', payload);
+// };

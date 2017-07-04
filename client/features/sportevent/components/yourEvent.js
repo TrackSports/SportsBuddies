@@ -34,7 +34,7 @@ class YourEvent extends Component {
               <ul className="nav nav-pills nav-stacked">
                 {eventList.map(d => {
                   return (
-                    <li key={d.id} role="presentation"><a onClick={() => { this.showTheEvent(d.id); }}> {d.weekday} {d.name}</a></li>
+                    <li key={d.id} role="presentation"><a onClick={() => { this.showTheEvent(d.id); }}> {d.eventDay} {d.name}</a></li>
                   );})}
               </ul>
             </div>

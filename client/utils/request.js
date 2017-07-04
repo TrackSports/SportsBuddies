@@ -23,7 +23,8 @@ function makePromise(url, options) {
         // if (response.status >= 200 && response.status < 300) {
         //   return response.error ? reject(response.error) : resolve(response);
         // }
-        return resolve(camelizeKeys(response));
+        const ss = camelizeKeys(response);
+        return resolve(ss);
       })
       .catch(error => {
         reject(error);
@@ -49,11 +50,11 @@ function buildUrl(path) {
 
   // return `${path}`;
 
-  const baseUrl = window.API_BASE || ''; // this can be changed
-  if (path.indexOf('?') > 0) {
-    return `${baseUrl}/api/${path}&nocache=${Math.random()}`;
-  }
-  return `${baseUrl}/api/${path}?nocache=${Math.random()}`;
+  // const baseUrl = window.API_BASE || ''; // this can be changed
+  // if (path.indexOf('?') > 0) {
+  //   return `${baseUrl}/api/${path}&nocache=${Math.random()}`;
+  // }
+  return `${path}?nocache=${Math.random()}`;
 
 
   // return `${path}?nocache=${Math.random()}`;
