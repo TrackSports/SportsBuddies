@@ -36,7 +36,8 @@ const InitialState = {
       isJoined: true
     }
   ],
-  newEvent: {}
+  newEvent: {},
+  userId: ''
 };
 
 
@@ -48,8 +49,14 @@ export default createReducer(InitialState, Object.assign(
     [ActionTypes.HIDE_EVENT_LIST_MODAL]: (state) => {
       return { ...state, isShowEventListModal: false };
     },
-    [ActionTypes.GET_EVENT_LIST_SUCCESS]: (state) => {
-      return { ...state, isShowEventListModal: false };
+    [ActionTypes.GET_EVENT_LIST_SUCCESS]: (state, action) => {
+      debugger
+      const events = action.payload;
+      return { ...state, eventList: events, isShowEventListModal: true };
+    },
+    [ActionTypes.GET_USER_ID]: (state, action) => {
+      const userIdaa = action.payload;
+      return { ...state, userId: userIdaa };
     },
     [ActionTypes.CREATE_EVENT]: (state) => {
       return { ...state, isShowNewEventModal: true };

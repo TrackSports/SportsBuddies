@@ -52,8 +52,8 @@ class EventListModal extends Component {
                 <td>{d.name}</td>
                 <td>{d.location}</td>
                 <td>{d.category}</td>
-                <td>{d.weekday}</td>
-                <td>{d.startTime}</td>
+                <td>{d.eventDay}</td>
+                <td>{d.dateTimeStart}</td>
                 <td>{d.duration}</td>
                 <td>{this.renderJoinButton(d.isJoined, d.id)}</td>
               </tr>

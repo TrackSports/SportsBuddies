@@ -10,7 +10,7 @@ export const getAllRelatedEvent = simpleSaga.bind(null, ev.getAllRelatedEventSuc
 export const getAllEvents = simpleSaga.bind(null, tv.getEventListSuccess, tv.getEventListFail, api.getAllEvents);
 
 export default [
-  takeLatest(actionTypes.GET_ALL_RELEATED_EVENT, getAllRelatedEvent)
-  // takeLatest(actionTypes.GET_EVENT_LIST, getAllEvents)
+  takeLatest(actionTypes.GET_ALL_RELEATED_EVENT, getAllRelatedEvent),
+  takeLatest(actionTypes.GET_EVENT_LIST, getAllEvents)
 
 ];

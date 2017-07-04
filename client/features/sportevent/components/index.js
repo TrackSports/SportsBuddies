@@ -8,13 +8,22 @@ import EventDetail from './EventDetail';
 import Toolbar from './toolbar';
 import YourEvent from './YourEvent';
 import { getAllRelatedEvent } from 'features/sportevent/actions/eventDetailAction';
+import { getUserId } from 'features/sportevent/actions/toolbarAction';
 
 class SportEvent extends Component {
+  constructor(props) {
+    super(props);
+    this.state =
+    {
+      userId: ''
+    };
+  }
 
   componentDidMount() {
     const { params: { accessCode } } = this.props;
     const username = accessCode.replace('-', '.');
     this.props.getAllRelatedEvent(username);
+    this.props.getUserId(username);
   }
 
   handleSubmit(e) {
@@ -42,11 +51,12 @@ class SportEvent extends Component {
 
 SportEvent.propTypes = {
   getAllRelatedEvent: PropTypes.func,
+  getUserId: PropTypes.func,
   params: PropTypes.object
 };
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({ getAllRelatedEvent }, dispatch);
+  return bindActionCreators({ getAllRelatedEvent, getUserId }, dispatch);
 }
 
 export default connect(null, matchDispatchToProps)(SportEvent);

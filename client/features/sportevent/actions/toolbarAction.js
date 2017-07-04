@@ -13,3 +13,5 @@ export const closeNewEventModal = createAction(ActionTypes.HIDE_NEW_EVENT_MODAL)
 export const joinEvent = createAction(ActionTypes.JOIN_EVENT);
 
 export const getAllEvent = createAction(ActionTypes.GET_ALL_EVENT);
+
+export const getUserId = createAction(ActionTypes.GET_USER_ID);
