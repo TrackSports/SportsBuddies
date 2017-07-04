@@ -123,3 +123,18 @@
             background-color: green;
         }
         
+
+        .loginOuterContainer{
+            text-align: center;
+            width: 100%;
+            margin-top: 10%;
+        }
+
+        .loginInnerContainer{
+            width:500px;
+            margin: 0 auto;
+        }
+
+        .loginInnerContainer input{
+            margin-top: 10px;
+        }
