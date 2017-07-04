@@ -12,7 +12,7 @@ namespace TrackSports_API.Business
         private string _conString = "data source=ldmcoredev.infotrack.com.au;initial catalog=TrackSports;user id=LDMS;password=LDMS;";
         public List<Event> GetEvents()
         {
-            List < Event > events=new List<Event>();
+            List<Event> events = new List<Event>();
             using (SqlConnection con = new SqlConnection(_conString))
             {
                 string sql = "select * from [Events]";
@@ -20,14 +20,15 @@ namespace TrackSports_API.Business
                 SqlCommand cmd = new SqlCommand(sql, con);
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
-                { Event ev=new Event();
+                {
+                    Event ev = new Event();
                     ev.Id = Convert.ToInt32(dr["EventId"]);
                     ev.Name = dr["Name"].ToString();
-                    ev.Location=dr["Location"].ToString();
-                    ev.Category=dr["Category"].ToString();
-                    ev.EventDay=dr["EventDay"].ToString();
+                    ev.Location = dr["Location"].ToString();
+                    ev.Category = dr["Category"].ToString();
+                    ev.EventDay = dr["EventDay"].ToString();
                     ev.DateTimeStart = dr["DateTimeStart"].ToString();
-                    ev.Duration=Convert.ToInt32(dr["Duration"]);
+                    ev.Duration = Convert.ToInt32(dr["Duration"]);
                     events.Add(ev);
                 }
                 con.Close();
@@ -40,9 +41,7 @@ namespace TrackSports_API.Business
             List<Event> events = new List<Event>();
             using (SqlConnection con = new SqlConnection(_conString))
             {
-                string sql = "select * FROM [Events], UsersEvents " +
-                             "where UsersEvents.EventId = [Events].EventId " +
-                             "and UsersEvents.UserId = " + userId;
+                string sql = "select * FROM [Events], UsersEvents UE, Users U where UE.EventId = [Events].EventId and U.UserId = UE.UserId and U.UserId = '" + userId + "' and Events.DateTimeStart > GETDATE() order by DateTimeStart asc ";
                 con.Open();
                 SqlCommand cmd = new SqlCommand(sql, con);
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -65,7 +64,6 @@ namespace TrackSports_API.Business
 
         public bool SaveNewEvent(Event newEvent)
         {
-            List<Event> events = new List<Event>();
             using (SqlConnection con = new SqlConnection(_conString))
             {
                 string sql = string.Format("insert [Events] ([Name], [Location], [Category], [EventDay], [DateTimeStart], [Duration]) Values ('{0}', '{1}', '{2}', '{3}', {4}, {5} )",
@@ -81,19 +79,68 @@ namespace TrackSports_API.Business
 
         public bool UserExists(string userId)
         {
+            bool exists = false;
+            using (SqlConnection con = new SqlConnection(_conString))
+            {
+                string sql = "select 1 from [Users] where userId='" + userId + "'";
+                con.Open();
+                SqlCommand cmd = new SqlCommand(sql, con);
+                SqlDataReader dr = cmd.ExecuteReader();
+                exists = dr.Read();
+                con.Close();
+            }
+            return exists;
+        }
+
+        public bool SaveUser(string newUserId, string nickName)
+        {
+            if (!UserExists(newUserId))
+            {
+                using (SqlConnection con = new SqlConnection(_conString))
+                {
+                    string sql = string.Format("insert [Users] ([UserId], [NickName]) Values ('{0}', '{1}')", newUserId, nickName);
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(sql, con);
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+                return true;
+            }
             return false;
         }
 
-        public bool SaveUser(string newUserId)
+        public bool IsUserJoinedEvent(string userId, int eventId)
         {
-
-            return true;
+            bool joined = false;
+            using (SqlConnection con = new SqlConnection(_conString))
+            {
+                string sql = "select 1 from [UsersEvents] where userId='" + userId + "' and EventId=" + eventId;
+                con.Open();
+                SqlCommand cmd = new SqlCommand(sql, con);
+                SqlDataReader dr = cmd.ExecuteReader();
+                joined = dr.Read();
+                con.Close();
+            }
+            return joined;
         }
 
         public bool JoinUserToEvent(string userId, int eventId)
         {
-
-            return true;
+            if (UserExists(userId) &&  !IsUserJoinedEvent(userId, eventId))
+            {
+                using (SqlConnection con = new SqlConnection(_conString))
+                {
+                    string sql = string.Format("insert [UsersEvents] ([UserId], [EventId]) Values ('{0}', {1})", userId, eventId);
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(sql, con);
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+                return true;
+            }
+            return false;
         }
     }
 }
