@@ -37,10 +37,11 @@ namespace TrackSports_API.Controllers
             return events;
         }
 
-        [HttpPost("newEvent/{newEvent}/{username}")]
-        public List<Event> SaveEvent(Event newEvent, string username)
+        [HttpPost("saveevent/{name}/{category}/{location}/{eventday}/{datetimeStart}/{duration}/{username}")]
+        public List<Event> SaveEvent(string name, string category, string location, string eventday, string datetimestart, string duration, string username)
         {
-            if (_eventsRepo.SaveNewEvent(newEvent))
+
+            if (_eventsRepo.SaveNewEvent(new Event() { Name = name, Category = category, Location = location, EventDay = eventday, DateTimeStart = datetimestart, Duration = int.Parse(duration) }))
                 return _eventsRepo.GetEventsByUserId(username);
             else
                 return null;
@@ -48,20 +49,34 @@ namespace TrackSports_API.Controllers
 
         [HttpGet("geteventsbyuser/{userid}")]
         [HttpPost("geteventsbyuser/{userid}")]
-        public List<Event> GetEventsByUserId(string userid)
+        public IActionResult GetEventsByUserId(string userid)
         {
             List<Event> events = _eventsRepo.GetEventsByUserId(userid);
-            return events;
+            return events.ToJSON();
         }
 
         [HttpPost("joinevent/{userid}/{eventid}")]
-        public List<Event> JoinEvent(string userid, string eventid)
+        public IActionResult JoinEvent(string userid, string eventid)
         {
             int evId = 0;
             if (int.TryParse(eventid, out evId))
             {
                 if (_eventsRepo.JoinUserToEvent(userid, evId))
-                    return _eventsRepo.GetEventsByUserId(userid);
+                    return _eventsRepo.GetEventsByUserId(userid).ToJSON();
+                else
+                    return null;
+            }
+            throw new Exception("Eventid is not int");
+        }
+
+        [HttpPost("removeuserevent/{userid}/{eventid}")]
+        public IActionResult RemoveUserEvent(string userid, string eventid)
+        {
+            int evId = 0;
+            if (int.TryParse(eventid, out evId))
+            {
+                if (_eventsRepo.RemoveUserFromEvent(userid, evId))
+                    return _eventsRepo.GetEventsByUserId(userid).ToJSON();
                 else
                     return null;
             }

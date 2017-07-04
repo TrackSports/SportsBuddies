@@ -59,6 +59,7 @@ namespace TrackSports_API.Business
                 }
                 con.Close();
             }
+            events.ForEach(x => x.IsJoined = IsUserJoinedEvent(userId, x.Id));
             return events;
         }
 
@@ -66,7 +67,7 @@ namespace TrackSports_API.Business
         {
             using (SqlConnection con = new SqlConnection(_conString))
             {
-                string sql = string.Format("insert [Events] ([Name], [Location], [Category], [EventDay], [DateTimeStart], [Duration]) Values ('{0}', '{1}', '{2}', '{3}', {4}, {5} )",
+                string sql = string.Format("insert [Events] ([Name], [Location], [Category], [EventDay], [DateTimeStart], [Duration]) Values ('{0}', '{1}', '{2}', '{3}', '{4}', {5} )",
                                                     newEvent.Name, newEvent.Location, newEvent.Category, newEvent.EventDay, newEvent.DateTimeStart, newEvent.Duration);
                 con.Open();
                 SqlCommand cmd = new SqlCommand(sql, con);
@@ -127,11 +128,30 @@ namespace TrackSports_API.Business
 
         public bool JoinUserToEvent(string userId, int eventId)
         {
-            if (UserExists(userId) &&  !IsUserJoinedEvent(userId, eventId))
+            if (UserExists(userId) && !IsUserJoinedEvent(userId, eventId))
             {
                 using (SqlConnection con = new SqlConnection(_conString))
                 {
                     string sql = string.Format("insert [UsersEvents] ([UserId], [EventId]) Values ('{0}', {1})", userId, eventId);
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(sql, con);
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+                return true;
+            }
+            return false;
+        }
+
+
+        public bool RemoveUserFromEvent(string userId, int eventId)
+        {
+            if (UserExists(userId) && IsUserJoinedEvent(userId, eventId))
+            {
+                using (SqlConnection con = new SqlConnection(_conString))
+                {
+                    string sql = string.Format("delete from UsersEvents where userId = '" + userId + "' and eventId = '" + eventId + "'");
                     con.Open();
                     SqlCommand cmd = new SqlCommand(sql, con);
                     cmd.CommandType = System.Data.CommandType.Text;
