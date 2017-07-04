@@ -22,6 +22,7 @@ namespace TrackSports_API.Controllers
         private const string CONNECTION_STRING = "";
         private readonly LdapConfig _ldapconfig;
         private EventsRepo _eventsRepo;
+
         public ValuesController(IOptions<LdapConfig> ldapConfig)
         {
             _ldapconfig = ldapConfig.Value;
@@ -52,6 +53,20 @@ namespace TrackSports_API.Controllers
             return events;
         }
 
+        [HttpPost("joinevent/{userid}/{eventid}")]
+        public List<Event> JoinEvent(string userid, string eventid)
+        {
+            int evId = 0;
+            if (int.TryParse(eventid, out evId))
+            {
+                if (_eventsRepo.JoinUserToEvent(userid, evId))
+                    return _eventsRepo.GetEventsByUserId(userid);
+                else
+                    return null;
+            }
+            throw new Exception("Eventid is not int");
+        }
+
         [HttpPost("login/{username}/{password}")]
         [AllowAnonymous]
         public IActionResult Login(string username, string password)
@@ -63,6 +78,10 @@ namespace TrackSports_API.Controllers
 
                 if (appUser != null && appUser.IsAuthenticated)
                 {
+                    // insert user
+                    if (!_eventsRepo.UserExists(username))
+                        _eventsRepo.SaveUser(username, "");
+
                     Response.StatusCode = 200;
                     return Ok(Response.StatusCode);
                 }
@@ -78,16 +97,6 @@ namespace TrackSports_API.Controllers
             return null;
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
